@@ -8,7 +8,7 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("Menu:");
+            Console.WriteLine("\nMenu:");
             Console.WriteLine("1. Write a new entry");
             Console.WriteLine("2. Display the journal");
             Console.WriteLine("3. Save the journal to a file");
