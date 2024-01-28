@@ -13,9 +13,9 @@ public class Entry {
     }
     public List<PromptGen> prompts = new List<PromptGen>();
 
-    public void PromptGen(){
-        Console.WriteLine(prompts);
-    }
+    // public void PromptGen(){
+    //     Console.WriteLine(prompts);
+    // }
     public void DisplayEntry() {
         Console.WriteLine($"{Date.ToString("MM/dd/yyyy hh:mm")} ~ Prompt: {Prompt} \nThoughts: {Thoughts}");
     }
