@@ -5,10 +5,14 @@ using System.IO;
 public class Journal {
 
     private List<Entry> entries = new List<Entry>();
-
+    private PromptGen promptGen = new PromptGen();
     public void AddEntry()
     {
         Entry newEntry = new Entry();
+
+        // Display a random prompt from PromptGen
+        newEntry.Prompt = promptGen.GetRandomPrompt();
+        Console.WriteLine($"Prompt: {newEntry.Prompt}");
 
         // Use the Entry class to grab a Thoughts and the date
         Console.Write("Enter Your Thoughts: ");
@@ -24,31 +28,32 @@ public class Journal {
         // Use the Entry class to display all the entries with the corresponding date and Thoughts
         foreach (var entry in entries)
         {
-            Console.WriteLine($"{entry.Date.ToString("MM/dd/yyyy hh:mm")} ~ {entry.Thoughts}");
+            // take each entry and then run it through the method in the Entry Class
+            entry.DisplayEntry();
+            Console.WriteLine("");
+            //Console.WriteLine($"{entry.Date.ToString("MM/dd/yyyy hh:mm")} ~ {entry.Prompt}\n{entry.Thoughts}");
         }
     }
 
     public void SaveToFile()
-    /*~~~~~~~~~~~~~~~~~~~~~~~~~ BIG PROBLEM!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~
-    When I save new entries to the txt file it replaces everything on the file*/
     {
-        // Use the Entry class to ask the user for a file
+        // Ask for a file from the user
         Console.Write("Enter the file name to save entries: ");
         string fileName = Console.ReadLine();
 
-        // Save the written Thoughts, answers, and date from the list made in AddEntry to the user's designated file
-        using (StreamWriter writer = new StreamWriter(fileName))
+        // Save the written Thoughts, Prompts, and date from the list made in AddEntry to the user's designated file
+        using (StreamWriter writer = new StreamWriter(fileName, true)) // Set 'true' to append
         {
             foreach (var entry in entries)
             {
-                writer.WriteLine($"{entry.Date.ToString("MM/dd/yyyy hh:mm")} ~ {entry.Thoughts}");
+                writer.WriteLine($"{entry.Date.ToString("MM/dd/yyyy hh:mm")} ~ Prompt:{entry.Prompt} ~ Thoughts:{entry.Thoughts}");
             }
         }
     }
 
+
     public void LoadFile()
-    /*~~~~~~~~~~~~~~~~~~~~~~~~~ MEDIUM PROBLEM~~~~~~~~~~~~~~~~~~~~~~~~~~
-    When I Try to load the txt file, None of the entries (I also have no idea what this code does...)*/
+    /*This LoadFile code was touched up by AI*/
     {
         // Use the Entry class to open the journal txt file and read the entries into a list
         Console.Write("Enter the file name to load entries: ");
@@ -56,7 +61,7 @@ public class Journal {
 
         if (File.Exists(fileName))
         {
-            entries.Clear(); // Clear existing entries
+            entries.Clear(); // Clear existing entries in saved list
 
             using (StreamReader reader = new StreamReader(fileName))
             {
@@ -64,14 +69,15 @@ public class Journal {
                 {
                     string line = reader.ReadLine();
                     // Assuming the format is "MM/dd/yyyy hh:mm ~ Thoughts"
-                    string[] parts = line.Split(new char[] { '~' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                    string[] parts = line.Split(new string[] { "~" }, 3, StringSplitOptions.RemoveEmptyEntries);
 
-                    if (parts.Length == 2 && DateTime.TryParse(parts[0], out DateTime date))
+                    if (parts.Length == 3 && DateTime.TryParse(parts[0], out DateTime date))
                     {
                         Entry loadedEntry = new Entry
                         {
                             Date = date,
-                            Thoughts = parts[1].Trim()
+                            Prompt = parts[1].Trim().Replace("Prompt:", ""),
+                            Thoughts = parts[2].Trim().Replace("Thoughts:", "")
                         };
                         entries.Add(loadedEntry);
                     }
