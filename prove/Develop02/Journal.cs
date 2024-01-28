@@ -41,13 +41,21 @@ public class Journal {
         Console.Write("Enter the file name to save entries: ");
         string fileName = Console.ReadLine();
 
-        // Save the written Thoughts, Prompts, and date from the list made in AddEntry to the user's designated file
-        using (StreamWriter writer = new StreamWriter(fileName, true)) // Set 'true' to append
+        if (File.Exists(fileName))
         {
-            foreach (var entry in entries)
+            // Save the written Thoughts, Prompts, and date from the list made in AddEntry to the user's designated file
+            using (StreamWriter writer = new StreamWriter(fileName, true)) // Set 'true' to append
             {
-                writer.WriteLine($"{entry.Date.ToString("MM/dd/yyyy hh:mm")} ~ Prompt:{entry.Prompt} ~ Thoughts:{entry.Thoughts}");
+                foreach (var entry in entries)
+                {
+                    writer.WriteLine($"{entry.Date.ToString("MM/dd/yyyy hh:mm")} ~ Prompt:{entry.Prompt} ~ Thoughts:{entry.Thoughts}");
+                }
             }
+            Console.WriteLine("Entry saved\n");
+        }
+        else
+        {
+            Console.WriteLine("File not found. No entries saved.");
         }
     }
 
