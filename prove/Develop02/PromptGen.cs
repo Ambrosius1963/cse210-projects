@@ -1,7 +1,7 @@
 public class PromptGen {
 
-    public List<string> prompts = new List<string>
-        {
+    // public List<string> prompts = new List<string>
+    public List<string> prompts = [
             "Who was the most interesting person I interacted with today?",
             "What was the best part of my day?",
             "How did I see the hand of the Lord in my life today?",
@@ -29,7 +29,7 @@ public class PromptGen {
             "If you could have a conversation with someone, living or dead, who would it be and why?",
             "Explore your relationship with time. Do you feel rushed, or do you have a sense of balance?",
             "Write about a goal you have for the upcoming month and the steps you'll take to achieve it."
-        };
+        ];
     public string GetRandomPrompt() {
         Random random = new Random();
         int index = random.Next(prompts.Count);
