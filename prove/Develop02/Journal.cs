@@ -4,8 +4,9 @@ using System.IO;
 
 public class Journal {
 
-    private List<Entry> entries = new List<Entry>();
+    private List<Entry> entries = [];
     private PromptGen promptGen = new PromptGen();
+    
     public void AddEntry()
     {
         Entry newEntry = new Entry();
@@ -48,7 +49,7 @@ public class Journal {
             {
                 foreach (var entry in entries)
                 {
-                    writer.WriteLine($"{entry.Date.ToString("MM/dd/yyyy hh:mm")} ~ Prompt:{entry.Prompt} ~ Thoughts:{entry.Thoughts}");
+                    writer.WriteLine($"{entry.Date.ToString("MM/dd/yyyy hh:mm")} ~ Prompt: {entry.Prompt} ~ Thoughts: {entry.Thoughts}");
                 }
             }
             Console.WriteLine("Entry saved\n");
@@ -61,7 +62,6 @@ public class Journal {
 
 
     public void LoadFile()
-    /*This LoadFile code was touched up by AI*/
     {
         // Use the Entry class to open the journal txt file and read the entries into a list
         Console.Write("Enter the file name to load entries: ");
@@ -84,8 +84,8 @@ public class Journal {
                         Entry loadedEntry = new Entry
                         {
                             Date = date,
-                            Prompt = parts[1].Trim().Replace("Prompt:", ""),
-                            Thoughts = parts[2].Trim().Replace("Thoughts:", "")
+                            Prompt = parts[1].Trim().Replace("Prompt: ", ""),
+                            Thoughts = parts[2].Trim().Replace("Thoughts: ", "")
                         };
                         entries.Add(loadedEntry);
                     }
