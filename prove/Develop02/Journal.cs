@@ -32,7 +32,6 @@ public class Journal {
             // take each entry and then run it through the method in the Entry Class
             entry.DisplayEntry();
             Console.WriteLine("");
-            //Console.WriteLine($"{entry.Date.ToString("MM/dd/yyyy hh:mm")} ~ {entry.Prompt}\n{entry.Thoughts}");
         }
     }
 
