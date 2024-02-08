@@ -4,6 +4,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Scripture memorizer!");
+        Console.WriteLine("\nWelcome to Scripture Memorizer!\n");
     }
 }
