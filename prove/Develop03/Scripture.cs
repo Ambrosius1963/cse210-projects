@@ -10,60 +10,61 @@
 //     + RenderText()
 // ===============================
 
-using System.Collections.Generic;
 
-public class Scripture{
+//     public string GenerateFlashcard()
+//     {
+//         // Display scripture without reference
+//         return _text;
+//     }
+// }
+public class Scripture {
+  
+  // Encapsulates words as private member.
+  private List<Word> words;
 
-    private string _reference;
-    private string _text;
-    private List<Word> _words;
+  // Constructor encapsulates splitting text into Word objects.
+  public Scripture(string text) {
+    this.words = text.Split(' ').Select((w, i) => new Word(w, i)).ToList();
+  }
 
-    // Constructor
+  // Method encapsulates logic to hide random words.
+  public void HideWords(int numToHide = 3) {
+
+    Random rnd = new Random();
+
+    int availableWordCount = this.words.Count(w => !w.IsHidden());
+    numToHide = Math.Min(numToHide, availableWordCount);
+
+    for (int i = 0; i < numToHide; i++) {
+
+      int index = rnd.Next(0, this.words.Count);
+      while (this.words[index].IsHidden()) {
+        index = rnd.Next(0, this.words.Count);
+      }
+
+      this.words[index].Hide();
+    }
+  }
+
+  // Abstraction of words into string representation.
+  public override string ToString() {
     
-    public Scripture(string scripture)
-    {
+    string scriptureText = "";
 
-    }
-    public Scripture(string scripture, string reference, string text, List<Word> words)
-    {
-        // Split scripture using "~"
-        var parts = scripture.Split('~');
-        _reference = parts[0].Trim();
-        _text = parts[1].Trim();
-        // split every at every word
-        _words = _text.Split(" ").Select((w, i) => new Word(w, i)).ToList();
+    foreach (Word word in this.words) {
+      scriptureText += word.ToString() + " ";
     }
 
-    // Method to hide a word
-    public void HideWords(Random rand, int count)
-    {
+    return scriptureText.Trim();
 
-        // Console.WriteLine(word);
+    // This whole method could be simplified to: 
+    // return String.Join(" ", this.words.Select(w => w.ToString()));
+  }
 
-        // var availableWords = _words.Where(w => !w.IsHidden).ToList();
-
-        // for(int i = 0; i < count && i < availableWords.Count; i++);{
-        //     var int = rand.Next(0, availableWords.Count);
-        //     var word = availableWords[index];
-        //     word.Hide();
-
-        //     availableWords.RemoveAt(index);
-        // }
+  // Encapsulates logic to print words.
+  public void ViewWords() {
+    foreach (Word word in this.words) {
+      Console.WriteLine($"{word.GetIndex().ToString().PadRight(3)} {word.IsHidden().ToString().PadRight(6)} {word}");
     }
-
-        public string GetReference()
-    {
-        return _reference;
-    }
-
-    public string GetText()
-    {
-        return _text;
-    }
-
-    public string GenerateFlashcard()
-    {
-        // Display scripture without reference
-        return _text;
-    }
+  }
 }
