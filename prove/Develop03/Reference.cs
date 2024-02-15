@@ -11,42 +11,50 @@
 // ===============================
 
 
-public class ScriptureReference {
+public class Reference {
 
-  // Private members encapsulate the state of a scripture reference.
-  private string book;
-  private int chapter;
-  private string verse;
-
-  // The actual Scripture text is encapsulated in a separate class.
-  // This abstraction separates concerns into different classes.
   private Scripture text;
 
   // Constructor encapsulates creation of a Scripture instance.
-  public ScriptureReference(string book, int chapter, string verse, string text) {
-    this.book = book;
-    this.chapter = chapter;
-    this.verse = verse;
+  public Reference(string text) { //string book, int chapter, string verse,
+
     this.text = new Scripture(text);
   }
 
-  // Method encapsulates logic to hide words in scripture text.
-  public void HideWords(int numToHide = 3) {
-    this.text.HideWords(numToHide);
+  // Method to print the scripture reference from the scripture text
+  public void PrintReference(string scripture)
+  {
+      // Split the scripture by '~' to separate the reference and text
+      string[] parts = scripture.Split('~');
+      
+      if (parts.Length >= 2)
+      {
+          // Print the reference
+          Console.WriteLine("\n\nReference:");
+          Console.WriteLine(parts[0].Trim()); // Trim any extra whitespace
+      }
+      else
+      {
+          // If the format is incorrect, print a message
+          Console.WriteLine("\n\nInvalid scripture format.");
+      }
+  }
+  public void PrintVerse(string scripture)
+  {
+      // Split the scripture by '~' to separate the reference and text
+      string[] parts = scripture.Split('~');
+      
+      if (parts.Length >= 2)
+      {
+          // Print the reference
+          Console.WriteLine("\n\nVerse:");
+          Console.WriteLine(parts[1].Trim()); // Trim any extra whitespace
+      }
+      else
+      {
+          // If the format is incorrect, print a message
+          Console.WriteLine("\n\nInvalid scripture format.");
+      }
   }
 
-  // Abstraction of details into string representation.
-  public override string ToString() {
-    return $"{this.book} {this.chapter}:{this.verse}\n{this.text}";
-  }
-
-  // Encapsulates printing the full scripture reference.
-  public void ViewScripture() {
-    Console.WriteLine($"{this.ToString()}");
-  }
-
-  // Encapsulates printing just the scripture text words.
-  public void ViewScriptureParts() {
-    this.text.ViewWords();
-  }
 }

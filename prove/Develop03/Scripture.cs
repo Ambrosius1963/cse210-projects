@@ -16,7 +16,7 @@
 //         // Display scripture without reference
 //         return _text;
 //     }
-// }
+
 public class Scripture {
   
   // Encapsulates words as private member.
@@ -46,19 +46,12 @@ public class Scripture {
     }
   }
 
+  public bool AllWordsHidden(){
+      return this.words.All(w => w.IsHidden());
+  }
   // Abstraction of words into string representation.
   public override string ToString() {
-    
-    string scriptureText = "";
-
-    foreach (Word word in this.words) {
-      scriptureText += word.ToString() + " ";
-    }
-
-    return scriptureText.Trim();
-
-    // This whole method could be simplified to: 
-    // return String.Join(" ", this.words.Select(w => w.ToString()));
+    return String.Join(" ", this.words.Select(w => w.ToString()));
   }
 
   // Encapsulates logic to print words.
