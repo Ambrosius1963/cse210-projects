@@ -69,7 +69,7 @@ public abstract class Activity
     public void DotAnimationOut(){
         // Remove dots one by one
         Console.Write('\r');
-        Console.Write(new string('.', 25));
+        Console.Write(new string('.', DotCount));
         for (int i = DotCount - 1; i >= 0; i--)
         {
             Console.Write("\b\b"); // Overwrite the dot with a space

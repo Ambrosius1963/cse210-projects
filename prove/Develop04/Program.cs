@@ -7,6 +7,7 @@ class Program
         while (true)
         {
             Console.Clear();
+            Console.WriteLine("\n~`~`~`~`~`~ WELCOME TO MEDITATE ~`~`~`~`~`~\n___________________________________________\n");
             Console.WriteLine("Select an activity:");
             Console.WriteLine("1. Breathing Activity");
             Console.WriteLine("2. Reflection Activity");

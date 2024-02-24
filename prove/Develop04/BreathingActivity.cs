@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 public class BreathingActivity : Activity
 {
-    public BreathingActivity() : base("Breathing Activity", "\n  This activity will help you relax by walking you through breathing in and out slowly. \n  Clear your mind and focus on your breathing.") { }
+    public BreathingActivity() : base("Breathing Activity", "\nThis activity will help you relax by walking you through breathing in and out slowly. \nClear your mind and focus on your breathing.\n") { }
 
     public override void Execute()
     {

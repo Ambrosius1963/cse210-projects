@@ -30,28 +30,31 @@ public class ReflectionActivity : Activity
         "How can you keep this experience in mind in the future?"
     };
 
-    public ReflectionActivity() : base("Reflection Activity", "\n  This activity will help you reflect on times in your life when you have shown strength and resilience. \n  This will help you recognize the power you have and how you can use it in other aspects of your life.") { }
+    public ReflectionActivity() : base("Reflection Activity", "\nThis activity will help you reflect on times in your life when you have shown strength and resilience. \nThis will help you recognize the power you have and how you can use it in other aspects of your life.\n") { }
 
     public override void Execute()
     {
         Start();
+        Random rnd = new Random();
+        string prompt = prompts[rnd.Next(prompts.Length)];
         bool continueReflection = true;
         while(continueReflection){
-            Random rnd = new Random();
-            string prompt = prompts[rnd.Next(prompts.Length)];
             Console.WriteLine(prompt);
 
             DateTime startTime = DateTime.Now;
+            bool questionPrinted = false;
+
             while (DateTime.Now - startTime < TimeSpan.FromSeconds(duration))
-            {
+            {    
+                if (!questionPrinted)
+                {
                 DotAnimationIn();
                 DotAnimationOut();
-                
                 Random random = new Random();
                 string question = questions[random.Next(questions.Length)];
                 Console.WriteLine(question);
-                Thread.Sleep(10000); // Pause for 10 seconds
-            
+                questionPrinted = true;
+                }            
             }
             Console.Write("\nContinue Reflecting? (y/n) ");
             ConsoleKeyInfo choice = Console.ReadKey();

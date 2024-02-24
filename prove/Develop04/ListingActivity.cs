@@ -19,19 +19,18 @@ public class ListingActivity : Activity
         "Who are some of your personal heroes?"
     };
 
-    public ListingActivity() : base("Listing Activity", "\n  This activity will help you reflect on the good things in your \n  life by having you list as many things as you can in a certain area.") { }
+    public ListingActivity() : base("Listing Activity", "\nThis activity will help you reflect on the good things in your \nlife by having you list as many things as you can in a certain area.\n") { }
 
     public override void Execute()
     {
-        
+        Start();
+        Random rnd = new Random();
+        string prompt = prompts[rnd.Next(prompts.Length)];
+
         bool continueListing = true;
         while(continueListing){
-            Start();
-            DateTime startTime = DateTime.Now;
-            
-            Random rnd = new Random();
-            string prompt = prompts[rnd.Next(prompts.Length)];
             Console.WriteLine(prompt);
+            DateTime startTime = DateTime.Now;
 
             while (DateTime.Now - startTime < TimeSpan.FromSeconds(duration))
             {
@@ -44,6 +43,7 @@ public class ListingActivity : Activity
             Console.Write("\nContinue Listing? (y/n) ");
             ConsoleKeyInfo choice = Console.ReadKey();
             if (choice.KeyChar == 'y'){
+                Console.Clear();
                 continue;
             }
             else if (choice.KeyChar == 'n'){
