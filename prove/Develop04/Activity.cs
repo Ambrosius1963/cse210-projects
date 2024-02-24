@@ -4,11 +4,15 @@
 // | - name: string                   |
 // | - description: string            |
 // | - duration: int                  |
+// | - DotCount: int                  |
+// | - Interval: double               |
 // ------------------------------------
-// | + Activity(name: string,        |
-// |            description: string) |
+// | + Activity(name: string,         |
+// |            description: string)  |
 // | + Start(): void                  |
-// | + SetDuration(): void            |
+// | - SetDuration(): void            |
+// | + DotAnimationIn(): void         |
+// | + DotAnimationOut(): void        |
 // | + End(): void                    |
 // | + Execute(): abstract void       |
 // ------------------------------------
@@ -20,6 +24,8 @@ public abstract class Activity
     protected string name;
     protected string description;
     protected int duration;
+    private const int DotCount = 25; // Adjust this for more or less dots
+
 
     public Activity(string name, string description)
     {
@@ -30,10 +36,10 @@ public abstract class Activity
     // Common starting message for all activities
     public void Start()
     {
-        Console.WriteLine($"Starting {name}: {description}");
+        Console.WriteLine($"Starting {name}:\n----------------------------- {description}");
         SetDuration();
-        Console.WriteLine("Prepare to begin...");
-        Thread.Sleep(3000); // Pause for 3 seconds
+        // Console.WriteLine("Prepare to begin...");
+        Thread.Sleep(1000); // Pause for 1 second
     }
 
     // Set the duration of the activity
@@ -46,11 +52,33 @@ public abstract class Activity
     // Common ending message for all activities
     public void End()
     {
-        Console.WriteLine("Great job!");
+        Console.WriteLine("\nGreat job!");
         Console.WriteLine($"You completed {name} for {duration} seconds.");
         Thread.Sleep(3000); // Pause for 3 seconds
     }
+    public void DotAnimationIn()
+    {
+        // Print dots for 5 seconds
+        for (int i = 0; i < DotCount; i++)
+        {
+            Console.Write(".");
+            Thread.Sleep(150); // Pause for .15 seconds
 
+        }
+    }
+    public void DotAnimationOut(){
+        // Remove dots one by one
+        Console.Write('\r');
+        Console.Write(new string('.', 25));
+        for (int i = DotCount - 1; i >= 0; i--)
+        {
+            Console.Write("\b\b"); // Overwrite the dot with a space
+            Console.Write(" "); // Overwrite the dot with a space
+            Thread.Sleep(150); // Pause for .15 seconds
+
+        }
+
+    }
     // Abstract method for activity execution
     public abstract void Execute();
 }

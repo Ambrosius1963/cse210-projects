@@ -30,29 +30,44 @@ public class ReflectionActivity : Activity
         "How can you keep this experience in mind in the future?"
     };
 
-    public ReflectionActivity() : base("Reflection Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.") { }
+    public ReflectionActivity() : base("Reflection Activity", "\n  This activity will help you reflect on times in your life when you have shown strength and resilience. \n  This will help you recognize the power you have and how you can use it in other aspects of your life.") { }
 
     public override void Execute()
     {
         Start();
-        Random rnd = new Random();
-        string prompt = prompts[rnd.Next(prompts.Length)];
-        Console.WriteLine(prompt);
-        foreach (string question in questions)
-        {
-            Console.WriteLine(question);
-            Thread.Sleep(3000); // Pause for 3 seconds
-            // Display spinner while paused
-            Console.Write("\b|");
-            Thread.Sleep(500);
-            Console.Write("\b/");
-            Thread.Sleep(500);
-            Console.Write("\b-");
-            Thread.Sleep(500);
-            Console.Write("\b\\");
-            Thread.Sleep(500);
-            Console.Write("\b");
+        bool continueReflection = true;
+        while(continueReflection){
+            Random rnd = new Random();
+            string prompt = prompts[rnd.Next(prompts.Length)];
+            Console.WriteLine(prompt);
+
+            DateTime startTime = DateTime.Now;
+            while (DateTime.Now - startTime < TimeSpan.FromSeconds(duration))
+            {
+                DotAnimationIn();
+                DotAnimationOut();
+                
+                Random random = new Random();
+                string question = questions[random.Next(questions.Length)];
+                Console.WriteLine(question);
+                Thread.Sleep(10000); // Pause for 10 seconds
+            
+            }
+            Console.Write("\nContinue Reflecting? (y/n) ");
+            ConsoleKeyInfo choice = Console.ReadKey();
+            if (choice.KeyChar == 'y'){
+                Console.Clear();
+                continue;
+            }
+            else if (choice.KeyChar == 'n'){
+                End();
+                continueReflection = false;
+            }
+            else{
+                Console.WriteLine("\nInvalid choice. Please enter y or n.");
+            }
         }
-        End();
+        
     }
+    
 }

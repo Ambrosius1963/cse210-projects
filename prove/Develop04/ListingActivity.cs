@@ -19,17 +19,40 @@ public class ListingActivity : Activity
         "Who are some of your personal heroes?"
     };
 
-    public ListingActivity() : base("Listing Activity", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.") { }
+    public ListingActivity() : base("Listing Activity", "\n  This activity will help you reflect on the good things in your \n  life by having you list as many things as you can in a certain area.") { }
 
     public override void Execute()
     {
-        Start();
-        Random rnd = new Random();
-        string prompt = prompts[rnd.Next(prompts.Length)];
-        Console.WriteLine(prompt);
-        Console.WriteLine("You have 10 seconds, start listing...");
-        Thread.Sleep(10000); // Pause for 10 seconds
-        Console.WriteLine("Time's up!");
-        End();
+        
+        bool continueListing = true;
+        while(continueListing){
+            Start();
+            DateTime startTime = DateTime.Now;
+            
+            Random rnd = new Random();
+            string prompt = prompts[rnd.Next(prompts.Length)];
+            Console.WriteLine(prompt);
+
+            while (DateTime.Now - startTime < TimeSpan.FromSeconds(duration))
+            {
+                DotAnimationIn();
+                DotAnimationOut();
+            }
+            // Thread.Sleep(duration); // Pause for their set time
+            Console.Write("\rTime's up!");
+            
+            Console.Write("\nContinue Listing? (y/n) ");
+            ConsoleKeyInfo choice = Console.ReadKey();
+            if (choice.KeyChar == 'y'){
+                continue;
+            }
+            else if (choice.KeyChar == 'n'){
+                End();
+                continueListing = false;
+            }
+            else{
+                Console.WriteLine("\nInvalid choice. Please enter y or n.");
+            }
+        }
     }
 }
