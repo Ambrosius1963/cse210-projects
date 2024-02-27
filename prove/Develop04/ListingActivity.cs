@@ -26,17 +26,19 @@ public class ListingActivity : Activity
         Start();
         Random rnd = new Random();
         string prompt = prompts[rnd.Next(prompts.Length)];
+        Console.Clear();
 
         bool continueListing = true;
         while(continueListing){
             Console.WriteLine(prompt);
-            DateTime startTime = DateTime.Now;
+            // DateTime startTime = DateTime.Now;
+            // while (DateTime.Now - startTime < TimeSpan.FromSeconds(duration))
+            // {
+            //     // DotAnimationIn();
+            //     // DotAnimationOut();
+            // }
+            CountdownTimer();
 
-            while (DateTime.Now - startTime < TimeSpan.FromSeconds(duration))
-            {
-                DotAnimationIn();
-                DotAnimationOut();
-            }
             // Thread.Sleep(duration); // Pause for their set time
             Console.Write("\rTime's up!");
             

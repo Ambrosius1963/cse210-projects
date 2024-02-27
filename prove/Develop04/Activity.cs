@@ -13,6 +13,7 @@
 // | - SetDuration(): void            |
 // | + DotAnimationIn(): void         |
 // | + DotAnimationOut(): void        |
+// | + CountdownTimer(): void         |
 // | + End(): void                    |
 // | + Execute(): abstract void       |
 // ------------------------------------
@@ -36,6 +37,7 @@ public abstract class Activity
     // Common starting message for all activities
     public void Start()
     {
+        Console.Clear();
         Console.WriteLine($"Starting {name}:\n----------------------------- {description}");
         SetDuration();
         // Console.WriteLine("Prepare to begin...");
@@ -49,13 +51,6 @@ public abstract class Activity
         duration = Convert.ToInt32(Console.ReadLine());
     }
 
-    // Common ending message for all activities
-    public void End()
-    {
-        Console.WriteLine("\nGreat job!");
-        Console.WriteLine($"You completed {name} for {duration} seconds.");
-        Thread.Sleep(3000); // Pause for 3 seconds
-    }
     public void DotAnimationIn()
     {
         // Print dots for 5 seconds
@@ -78,6 +73,23 @@ public abstract class Activity
 
         }
 
+    }
+    public void CountdownTimer()
+    {
+        int timeRemaining = duration; // 1000; // Convert milliseconds to seconds
+        while (timeRemaining > 0)
+        {   
+            Console.Write($"\rTime remaining: {timeRemaining} seconds");
+            Thread.Sleep(1000); // Wait for 1 second
+            timeRemaining--;
+        }
+    }
+    // Common ending message for all activities
+    public void End()
+    {
+        Console.WriteLine("\nGreat job!");
+        Console.WriteLine($"You completed {name} for {duration} seconds.");
+        Thread.Sleep(3000); // Pause for 3 seconds
     }
     // Abstract method for activity execution
     public abstract void Execute();
