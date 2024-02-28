@@ -41,7 +41,7 @@ public abstract class Activity
         Console.WriteLine($"Starting {name}:\n----------------------------- {description}");
         SetDuration();
         // Console.WriteLine("Prepare to begin...");
-        Thread.Sleep(1000); // Pause for 1 second
+        Thread.Sleep(300); // Pause for .3 seconds
     }
 
     // Set the duration of the activity
@@ -77,19 +77,21 @@ public abstract class Activity
     public void CountdownTimer()
     {
         int timeRemaining = duration; // 1000; // Convert milliseconds to seconds
-        while (timeRemaining > 0)
+        while (timeRemaining >= 0)
         {   
-            Console.Write($"\rTime remaining: {timeRemaining} seconds");
+            string seconds = timeRemaining == 1 ? "second" : "seconds";
+            Console.Write($"\rTime remaining: {timeRemaining} {seconds} ");
             Thread.Sleep(1000); // Wait for 1 second
             timeRemaining--;
         }
+        Console.WriteLine("\nTime's up!");
     }
     // Common ending message for all activities
     public void End()
     {
         Console.WriteLine("\nGreat job!");
         Console.WriteLine($"You completed {name} for {duration} seconds.");
-        Thread.Sleep(3000); // Pause for 3 seconds
+        Thread.Sleep(1000); // Pause for 1 seconds
     }
     // Abstract method for activity execution
     public abstract void Execute();

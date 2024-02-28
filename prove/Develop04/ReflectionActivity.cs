@@ -38,6 +38,7 @@ public class ReflectionActivity : Activity
         Random rnd = new Random();
         string prompt = prompts[rnd.Next(prompts.Length)];
         bool continueReflection = true;
+        Console.Clear();
         while(continueReflection){
             Console.WriteLine(prompt);
 
@@ -54,6 +55,7 @@ public class ReflectionActivity : Activity
                 string question = questions[random.Next(questions.Length)];
                 Console.WriteLine(question);
                 questionPrinted = true;
+                CountdownTimer();
                 }            
             }
             Console.Write("\nContinue Reflecting? (y/n) ");

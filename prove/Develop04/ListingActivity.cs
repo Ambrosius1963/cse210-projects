@@ -31,16 +31,8 @@ public class ListingActivity : Activity
         bool continueListing = true;
         while(continueListing){
             Console.WriteLine(prompt);
-            // DateTime startTime = DateTime.Now;
-            // while (DateTime.Now - startTime < TimeSpan.FromSeconds(duration))
-            // {
-            //     // DotAnimationIn();
-            //     // DotAnimationOut();
-            // }
+            Thread.Sleep(1000); // Pause for 1 sec
             CountdownTimer();
-
-            // Thread.Sleep(duration); // Pause for their set time
-            Console.Write("\rTime's up!");
             
             Console.Write("\nContinue Listing? (y/n) ");
             ConsoleKeyInfo choice = Console.ReadKey();

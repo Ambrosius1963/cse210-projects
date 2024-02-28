@@ -33,6 +33,10 @@ class Program
                 activity.Execute();
             }
             else if (choice.KeyChar == '4'){
+                Console.Clear();
+                Console.Write("Thanks for Meditating with me!");
+                Thread.Sleep(1500); // wait 1.5 sec
+                Console.Clear();
                 Environment.Exit(0);
             }
             else{
