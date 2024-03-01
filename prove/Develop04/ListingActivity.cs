@@ -8,7 +8,6 @@
 
 
 
-
 public class ListingActivity : Activity
 {
     private string[] prompts = {

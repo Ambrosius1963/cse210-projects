@@ -5,8 +5,6 @@
 // -------------------------------------------
 
 
-using System.Xml.Serialization;
-
 public class BreathingActivity : Activity
 {
     public BreathingActivity() : base("Breathing Activity", "\nThis activity will help you relax by walking you through breathing in and out slowly. \nClear your mind and focus on your breathing.\n") { }
@@ -22,11 +20,10 @@ public class BreathingActivity : Activity
                 Console.Clear();
                 Console.WriteLine("Breathe in");
                 DotAnimationIn();
-                // Thread.Sleep(5000); // Pause for 5 seconds
+
                 Console.Clear();
                 Console.WriteLine("Breathe out");
                 DotAnimationOut();
-                // Thread.Sleep(5000); // Pause for 5 seconds
                 
             }
             Console.Write("\nBreath again? (y/n) ");
