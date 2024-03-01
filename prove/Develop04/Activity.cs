@@ -57,7 +57,7 @@ public abstract class Activity
         for (int i = 0; i < DotCount; i++)
         {
             Console.Write(".");
-            Thread.Sleep(150); // Pause for .15 seconds
+            Thread.Sleep(150); // Pause for .15 seconds between each dot
 
         }
     }
@@ -67,9 +67,9 @@ public abstract class Activity
         Console.Write(new string('.', DotCount));
         for (int i = DotCount - 1; i >= 0; i--)
         {
-            Console.Write("\b\b"); // Overwrite the dot with a space
+            Console.Write("\b\b"); // Back space twice
             Console.Write(" "); // Overwrite the dot with a space
-            Thread.Sleep(150); // Pause for .15 seconds
+            Thread.Sleep(150); // Pause for .15 seconds between each dot
 
         }
 
@@ -91,7 +91,7 @@ public abstract class Activity
     {
         Console.WriteLine("\nGreat job!");
         Console.WriteLine($"You completed {name} for {duration} seconds.");
-        Thread.Sleep(1000); // Pause for 1 seconds
+        Thread.Sleep(1500); // Pause for 1.5 seconds
     }
     // Abstract method for activity execution
     public abstract void Execute();
