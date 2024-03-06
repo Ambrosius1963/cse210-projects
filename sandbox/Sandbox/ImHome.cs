@@ -1,5 +1,4 @@
 public class ImHome : SmartDevice
-// Open the Garage, and set temperature to 70 degrees F
 {
     public ImHome() : base("Welcome Home") { }
 
@@ -7,6 +6,13 @@ public class ImHome : SmartDevice
     {
         Console.WriteLine("Welcome home!");
         TurnDeviceOn();
+
+        Console.WriteLine("Opening garage door...");
+        Thread.Sleep(1000); // Simulate opening time
+        Console.WriteLine("Garage door open!");
+
+        Console.WriteLine("Setting temperature to 70 degrees F...");
+        Thread.Sleep(500); // Simulate temperature adjustment time
+        Console.WriteLine("Temperature set!");
     }
-    
 }
