@@ -40,7 +40,6 @@ public abstract class Activity
         Console.Clear();
         Console.WriteLine($"Starting {name}:\n----------------------------- {description}");
         SetDuration();
-        // Console.WriteLine("Prepare to begin...");
         Thread.Sleep(300); // Pause for .3 seconds
     }
 
