@@ -7,6 +7,7 @@ public class HeatOven : SmartDevice
     public override void Execute()
     {
         TurnDeviceOn();
+        Display();
 
         // Get user input for temperature
         while (_targetTemperature == 0)
@@ -24,8 +25,11 @@ public class HeatOven : SmartDevice
 
         Console.WriteLine($"Setting oven to {_targetTemperature}ºF.");
         Thread.Sleep(500); 
-        Console.WriteLine("Heating oven...");
+        Console.WriteLine("\nHeating oven...");
         Thread.Sleep(2000); // Simulating oven heating process
         Console.WriteLine("Oven is ready!");
+        Thread.Sleep(2000); // pause for reading
+
+
     }
 }

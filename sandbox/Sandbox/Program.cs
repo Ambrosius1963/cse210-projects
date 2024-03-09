@@ -7,7 +7,7 @@ class Program
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("\n~`~`~`~`~ MyHome ~`~`~`~`~\n______________________________________\n");
+            Console.WriteLine("\n~`~`~`~`~ MyHome ~`~`~`~`~\n__________________________\n");
             Console.WriteLine("Select your Mode:");
             Console.WriteLine("1. Heat oven");
             Console.WriteLine("2. I'm coming home");
