@@ -4,7 +4,8 @@ public class UserInterface
 {
     public void DisplayMenu()
     {
-        Console.WriteLine("----- Recipe Management System -----");
+        Console.Clear();
+        Console.WriteLine("\nMain Appetizer Dessert\n----------------------\n~~~~ M.A.D. Foods ~~~~\n----------------------\n");
         Console.WriteLine("1. Find Recipe");
         Console.WriteLine("2. Add Recipe");
         Console.WriteLine("3. Exit");
@@ -42,13 +43,13 @@ public class UserInterface
 
     public string GetRecipeName()
     {
-        Console.Write("Enter Recipe Name: ");
+        Console.Write("\nEnter Recipe Name: ");
         return Console.ReadLine();
     }
 
     public Ingredient GetIngredient()
     {
-        Console.Write("Enter Ingredient Name (press Enter to finish): ");
+        Console.Write("\nEnter Ingredient Name (press Enter to finish): ");
         var name = Console.ReadLine();
         if (string.IsNullOrEmpty(name))
             return null;
@@ -64,13 +65,13 @@ public class UserInterface
 
     public string GetInstructions()
     {
-        Console.WriteLine("Enter Instructions:");
+        Console.WriteLine("\nEnter Instructions:");
         return Console.ReadLine();
     }
 
     public bool ConfirmSave()
     {
-        Console.Write("Do you want to save the recipe? (yes/no): ");
+        Console.Write("\nDo you want to save the recipe? (yes/no): ");
         var choice = Console.ReadLine().ToLower();
         return choice == "yes";
     }
