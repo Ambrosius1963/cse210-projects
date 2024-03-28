@@ -5,7 +5,7 @@ public class UserInterface
     public void DisplayMenu()
     {
         Console.Clear();
-        Console.WriteLine("\nMain Appetizer Dessert\n----------------------\n~~~~ M.A.D. Foods ~~~~\n----------------------\n");
+        Console.WriteLine("\n~~~~ M.A.D. Foods ~~~~\n----------------------\nMain Appetizer Dessert\n----------------------\n");
         Console.WriteLine("1. Find Recipe");
         Console.WriteLine("2. Add Recipe");
         Console.WriteLine("3. Exit");
