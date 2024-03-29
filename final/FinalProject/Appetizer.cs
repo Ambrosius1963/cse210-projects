@@ -2,6 +2,6 @@ public class AppetizerRecipe : RecipeBase
 {
     public override void Cook()
     {
-        Console.WriteLine("Serving the appetizer cold...");
+        Console.WriteLine("Everyone likes a good appetizer!");
     }
 }

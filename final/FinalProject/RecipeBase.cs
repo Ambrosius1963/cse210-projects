@@ -17,19 +17,23 @@ public abstract class RecipeBase
 
     public virtual void Cook()
     {
-        Console.WriteLine("Cooking the recipe...");
+        Console.WriteLine("Cook the recipe");
     }
 
+    public void  PrintRecipeName()
+    {
+        Console.WriteLine($"{Name}");
+    }
     public void PrintRecipe()
     {
-        Console.WriteLine($"Recipe Name: {Name}");
+        Console.WriteLine($"{Name}\n-----------------");
         Console.WriteLine($"Type: {Type}");
-        Console.WriteLine("Ingredients:");
+        Console.WriteLine("\nIngredients:");
         foreach (var ingredient in Ingredients)
         {
             Console.WriteLine($"- {ingredient}");
         }
-        Console.WriteLine("Instructions:");
+        Console.WriteLine("\nInstructions:");
         Console.WriteLine(Instructions);
     }
 

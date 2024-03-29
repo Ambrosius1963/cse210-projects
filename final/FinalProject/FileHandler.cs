@@ -14,7 +14,7 @@ public class FileHandler
             var lines = File.ReadAllLines("recipes.csv");
             foreach (var line in lines)
             {
-                var parts = line.Split(',');
+                var parts = line.Split('~');
                 var type = (RecipeType)Enum.Parse(typeof(RecipeType), parts[0]);
                 var name = parts[1];
                 var ingredientParts = parts[2].Split(';');
@@ -24,11 +24,11 @@ public class FileHandler
                     return new Ingredient
                     {
                         Name = ingredientDetails[0],
-                        Quantity = double.Parse(ingredientDetails[1]),
+                        Quantity = ingredientDetails[1],
                         Unit = ingredientDetails[2]
                     };
                 }).ToList();
-                var instructions = parts[3];
+                var instructions = parts[3]; //.Split(";").ToList()
                 
                 
                 switch (type)
@@ -39,7 +39,7 @@ public class FileHandler
                             Type = type,
                             Name = name,
                             Ingredients = ingredients,
-                            Instructions = instructions
+                            Instructions = instructions //string.Join("; ", instructions) 
                         });
                         break;
                     case RecipeType.MainCourse:
@@ -48,7 +48,7 @@ public class FileHandler
                             Type = type,
                             Name = name,
                             Ingredients = ingredients,
-                            Instructions = instructions
+                            Instructions = instructions //string.Join("; ", instructions) 
                         });
                         break;
                     case RecipeType.Dessert:
@@ -57,7 +57,7 @@ public class FileHandler
                             Type = type,
                             Name = name,
                             Ingredients = ingredients,
-                            Instructions = instructions
+                            Instructions = instructions //string.Join("; ", instructions) 
                         });
                         break;
                     default:
@@ -72,6 +72,6 @@ public class FileHandler
 
     public void WriteToFile(List<RecipeBase> recipes)
     {
-        File.WriteAllLines("recipes.csv", recipes.Select(r => $"{r.Type},{r.Name},{string.Join(";", r.Ingredients.Select(i => $"{i.Name}:{i.Quantity}:{i.Unit}"))},{r.Instructions}"));
+        File.WriteAllLines("recipes.csv", recipes.Select(r => $"{r.Type}~{r.Name}~{string.Join(";", r.Ingredients.Select(i => $"{i.Name}:{i.Quantity}:{i.Unit}"))}~{r.Instructions}"));
     }
 }

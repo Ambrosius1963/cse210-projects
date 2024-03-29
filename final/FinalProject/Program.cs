@@ -44,7 +44,7 @@ public class Program
                     Console.WriteLine("Invalid choice.");
                     break;
             }
-            Console.WriteLine("Press any key to continue...");
+            Console.WriteLine("Press any key to return to the main menu.");
             Console.ReadKey();
             Console.Clear();
         }

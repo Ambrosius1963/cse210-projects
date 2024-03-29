@@ -7,8 +7,9 @@ public class RecipeViewer
 {
     public void DisplayRecipe(RecipeBase recipe)
     {
+        Console.Clear();
         recipe.PrintRecipe();
-        Console.Write("Do you want a shopping list for this recipe? (yes/no): ");
+        Console.Write("\nDo you want a shopping list for this recipe? (yes/no): ");
         var choice = Console.ReadLine().ToLower();
         if (choice == "yes")
         {
@@ -18,12 +19,14 @@ public class RecipeViewer
 
     public void DisplayAllRecipes(List<RecipeBase> recipes)
     {
+        Console.Clear();
+        Console.WriteLine("Recipes:");
+        Console.WriteLine("---------------------");
         foreach (var recipe in recipes)
         {
-            recipe.PrintRecipe();
-            Console.WriteLine("------------------------------");
+            recipe.PrintRecipeName();
         }
-        Console.WriteLine("Choose a recipe to view:");
+        Console.WriteLine("\nChoose a recipe to view:");
         var name = Console.ReadLine();
         var selectedRecipe = recipes.FirstOrDefault(r => r.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         if (selectedRecipe != null)
@@ -40,6 +43,7 @@ public class RecipeViewer
     {
         using (StreamWriter writer = new StreamWriter($"{recipe.Name}_shoppingList.txt"))
         {
+            writer.WriteLine($"Shopping list for {recipe.Name}:");
             foreach (var ingredient in recipe.Ingredients)
             {
                 writer.WriteLine($"{ingredient.Quantity} {ingredient.Unit} of {ingredient.Name}");

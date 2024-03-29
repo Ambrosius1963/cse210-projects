@@ -2,6 +2,6 @@ public class MainCourseRecipe : RecipeBase
 {
     public override void Cook()
     {
-        Console.WriteLine("Cooking the main course...");
+        Console.WriteLine("Cook something worthy of eating.");
     }
 }

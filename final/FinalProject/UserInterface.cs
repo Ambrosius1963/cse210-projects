@@ -5,7 +5,7 @@ public class UserInterface
     public void DisplayMenu()
     {
         Console.Clear();
-        Console.WriteLine("\n~~~~ M.A.D. Foods ~~~~\n----------------------\nMain Appetizer Dessert\n----------------------\n");
+        Console.WriteLine("\n~~~  M.A.D. For Food ~~~\n------------------------\nMain, Appetizer, Dessert\n------------------------\n");
         Console.WriteLine("1. Find Recipe");
         Console.WriteLine("2. Add Recipe");
         Console.WriteLine("3. Exit");
@@ -19,6 +19,7 @@ public class UserInterface
 
     public RecipeType? GetRecipeTypeChoice()
     {
+        Console.Clear();
         Console.WriteLine("Choose Recipe Type:");
         Console.WriteLine("1. Appetizer");
         Console.WriteLine("2. Main Course");
@@ -34,7 +35,7 @@ public class UserInterface
             case "3":
                 return RecipeType.Dessert;
             case "4":
-                return null;  // All recipes
+                return null;  // Figure out how to print All recipes
             default:
                 Console.WriteLine("Invalid choice.");
                 return GetRecipeTypeChoice();
@@ -55,7 +56,7 @@ public class UserInterface
             return null;
 
         Console.Write("Enter Quantity: ");
-        var quantity = double.Parse(Console.ReadLine());
+        var quantity = Console.ReadLine(); //double.Parse(?
 
         Console.Write("Enter Unit: ");
         var unit = Console.ReadLine();
