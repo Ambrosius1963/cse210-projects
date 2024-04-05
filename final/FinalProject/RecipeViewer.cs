@@ -46,7 +46,7 @@ public class RecipeViewer
             writer.WriteLine($"Shopping list for {recipe.Name}:");
             foreach (var ingredient in recipe.Ingredients)
             {
-                writer.WriteLine($"{ingredient.Quantity} {ingredient.Unit} of {ingredient.Name}");
+                writer.WriteLine($"  [ ] {ingredient.Name}");
             }
         }
         Console.WriteLine($"Shopping list for {recipe.Name} has been saved as {recipe.Name}_shoppingList.txt");

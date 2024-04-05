@@ -37,11 +37,11 @@ public abstract class RecipeBase
         Console.WriteLine(Instructions);
     }
 
-    public void SaveToFile()
-    {
-        using (StreamWriter writer = new StreamWriter("recipes.csv", true))
-        {
-            writer.WriteLine($"{Type},{Name},{string.Join(";", Ingredients.Select(i => $"{i.Name}:{i.Quantity}:{i.Unit}"))},{Instructions}");
-        }
-    }
+    // public void SaveToFile()
+    // {
+    //     using (StreamWriter writer = new StreamWriter("recipes.csv", true))
+    //     {
+    //         writer.WriteLine($"{Type},{Name},{string.Join(";", Ingredients.Select(i => $"{i.Name}:{i.Quantity}:{i.Unit}"))},{Instructions}");
+    //     }
+    // }
 }
