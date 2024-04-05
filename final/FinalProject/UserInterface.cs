@@ -35,7 +35,7 @@ public class UserInterface
             case "3":
                 return RecipeType.Dessert;
             case "4":
-                return null;  // Figure out how to print All recipes
+                return RecipeType.All;  //prints All recipes
             default:
                 Console.WriteLine("Invalid choice.");
                 return GetRecipeTypeChoice();
